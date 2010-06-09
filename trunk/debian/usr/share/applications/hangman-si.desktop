@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Hangman-Si
+Comment=Hangman Sinhala
+TryExec=hangman-si
+Exec=hangman-si
+Icon=hangman-si
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Game;BlocksGame;
+StartupNotify=true
