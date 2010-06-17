@@ -30,13 +30,13 @@ class Hangman(wx.Frame):
    SCOPE 	 = ""
    TITLE_SCOPE = ""
    CONFIG 	 = "hangman.conf"
-   DATA_DIR 	 = "data"
+   DATA_DIR  = "data"
    IMG_DIR 	 = "img"
-   FONT_SIZE 	 = 15
+   FONT_SIZE = 14
    DEBUG 	 = 1
    NO_OF_CHANSES = 15
-   LANGUAGE = "TAMIL" 
-   #LANGUAGE = "SINHALA"
+   #LANGUAGE = "TAMIL" 
+   LANGUAGE = "SINHALA"
 
     
    def __init__(self, *args, **kwds):
@@ -124,8 +124,8 @@ class Hangman(wx.Frame):
          "APPLY"        :u'යොදන්න',
          "OK_TO_CLOSE"  :u"සමුගැනීමට අවසරද",
          "GAME"         :u"ක්‍රීඩාව",
-         "INTRO"        :u"හැදින්වීම",
-         "INFOMATION"   :u"තොරතුරු",
+         "INTRODUCTION" :u"හැදින්වීම",
+         "INFORMATION"  :u"තොරතුරු",
          "YOU_WON"      :u"ඔබ දිනුම්",
          "YOU_LOOSE"    :u"ඔබ් පරාදයි",
          "RESULTS"      :u"තරග ප්‍රතිඵල",
@@ -161,12 +161,6 @@ class Hangman(wx.Frame):
       self.menuBar.Append(menu, "&Help")
       self.Bind(wx.EVT_MENU, self.onAbout, m_about)
       self.SetMenuBar(self.menuBar)
-
-
-
-
-
-     
 
    '''
    Generate keyboard according to the language and the difficulty level
