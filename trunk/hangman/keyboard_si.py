@@ -13,7 +13,7 @@ class keyboard_si(wx.Frame):
       kwds["style"] = wx.DEFAULT_FRAME_STYLE
       wx.Frame.__init__(self, *args, **kwds)
       self.SetFont(wx.Font(16, wx.TELETYPE, wx.NORMAL, wx.NORMAL, 0, "Iskoola Pota"))
-      self.SetSize(size=(900, 500))
+      self.SetSize(size=(850, 500))
       self.init_keyboard()
 
 
@@ -33,46 +33,69 @@ class keyboard_si(wx.Frame):
       
       button_width = 46
       button_height = 46
-      
       buttons_per_line = 10
-
       initial_button_x = 100
-      initial_button_y = 100
-
-      
+      initial_button_y = 200
       starting_event_id = 0
       current_sign = 0
-      
-      vowel_button_list = self.gen_button_array(self,self.VOWELS, self.vowel_click , buttons_per_line, initial_button_x, initial_button_y, starting_event_id, button_width, button_height)    
+      vowel_button_list = self.gen_button_array(self,
+                                                self.VOWELS,
+                                                self.vowel_click ,
+                                                buttons_per_line,
+                                                initial_button_x,
+                                                initial_button_y,
+                                                starting_event_id,
+                                                button_width,
+                                                button_height)    
       for sign in self.VOWELS:
          vd_button = vowel_button_list[current_sign]
          vd_button.SetLabel(sign)
          current_sign += 1
          
-      initial_button_y = 210
+      initial_button_y = 310
       current_sign = 0
       starting_event_id = self.vowels_length
-      consonents_button_list = self.gen_button_array(self,self.CONSONENTS, self.consonent_click , buttons_per_line, initial_button_x, initial_button_y, starting_event_id, button_width, button_height)    
+      consonents_button_list = self.gen_button_array(self,
+                                                     self.CONSONENTS,
+                                                     self.consonent_click ,
+                                                     buttons_per_line,
+                                                     initial_button_x,
+                                                     initial_button_y,
+                                                     starting_event_id,
+                                                     button_width,
+                                                     button_height)    
       for sign in self.CONSONENTS:
          vd_button = consonents_button_list[current_sign]
          vd_button.SetLabel(sign)
          current_sign += 1
       
-      self.textArea = wx.TextCtrl(self, pos=(20, 20), size=(600, 65), style=wx.TE_MULTILINE)
+      self.textArea = wx.TextCtrl(self, pos=(20, 20), size=(800, 165), style=wx.TE_MULTILINE)
       self.textArea.Multiline = True
       self.textArea.WordWrap = True
       
-   def gen_button_array(self, resizer, label_list, onclick_function, buttons_per_line, initial_button_x, initial_button_y, starting_event_id, button_width, button_height):    
+   def gen_button_array(self,
+                        resizer,
+                        label_list,
+                        onclick_function,
+                        buttons_per_line,
+                        initial_button_x,
+                        initial_button_y,
+                        starting_event_id,
+                        button_width,
+                        button_height):    
       current_button_x = initial_button_x 
       current_button_y = initial_button_y
       current_sign = 0
       event_id = starting_event_id
-      self.vowel_dicretics_2_button_list = []
+      button_list = []
       
       for sign in label_list:
-         vd_button = wx.Button(resizer, event_id, label=sign, pos=(current_button_x - 60 - 15, current_button_y), size=(button_width, button_height))
-         print event_id
-         self.vowel_dicretics_2_button_list.append(vd_button)
+         vd_button = wx.Button(resizer,
+                               event_id,
+                               label=sign,
+                               pos=(current_button_x - 60 - 15, current_button_y),
+                               size=(button_width, button_height))
+         button_list.append(vd_button)
          wx.EVT_BUTTON(self, event_id, onclick_function)
          current_button_x += button_width
          current_sign += 1
@@ -80,7 +103,7 @@ class keyboard_si(wx.Frame):
          if  current_sign % buttons_per_line == 0:
             current_button_y += button_height
             current_button_x = initial_button_x
-      return self.vowel_dicretics_2_button_list 
+      return button_list 
    
    
    def vowel_click(self, event):
@@ -89,22 +112,23 @@ class keyboard_si(wx.Frame):
          
    def consonent_click(self, event):
       event_id = event.GetId()
-      print event_id
       self.textArea.AppendText(self.CONSONENTS[event_id - (self.vowels_length)])
       self.gen_vowel_dicretics(self.CONSONENTS[event_id - (self.vowels_length)])
       
    def vowel_dicretic_click(self, event):
       event_id = event.GetId()
-      print event_id
       vowel_dicretic_id = event_id - (self.vowels_length + self.consonents_length)
-      print   vowel_dicretic_id
       
       if  vowel_dicretic_id >= self.vowel_diacritics_2_length:
          vowel_dicretic_id -= self.vowel_diacritics_2_length
          self.textArea.AppendText(self.vowel_dicretics_list[vowel_dicretic_id])
 
+         btn_id = 0
          for btn in self.vowel_dicretics_button_list:
-            btn.Disable()
+             if not btn_id >= (len(self.vowel_dicretics_button_list) - 2):
+                  btn.Disable() #disable other than of last two buttons 
+             btn_id += 1
+                  
          for btn in self.vowel_dicretics_button_2_list:
             btn.Disable()
       else:
@@ -126,12 +150,12 @@ class keyboard_si(wx.Frame):
       button_height = 46
       buttons_per_line = 5
       initial_button_x = 600
-      initial_button_y = 100
+      initial_button_y = 200
       starting_event_id = (self.vowels_length + self.consonents_length)
       current_sign = 0
       
       if self.buttons_added == False:
-         self.vowel_dicretics_button_2_list = self.gen_button_array(self,self.VOWEL_DIACRITICS_2, self.vowel_dicretic_click , buttons_per_line, initial_button_x, initial_button_y, starting_event_id, button_width, button_height)    
+         self.vowel_dicretics_button_2_list = self.gen_button_array(self, self.VOWEL_DIACRITICS_2, self.vowel_dicretic_click , buttons_per_line, initial_button_x, initial_button_y, starting_event_id, button_width, button_height)    
       for sign in self.VOWEL_DIACRITICS_2:
          self.vowel_dicretics_2_list.append(sign)
          vd_button = self.vowel_dicretics_button_2_list[current_sign]
@@ -140,12 +164,12 @@ class keyboard_si(wx.Frame):
          current_sign += 1
          
       initial_button_x = 600
-      initial_button_y = 160
+      initial_button_y = 260
       current_sign = 0
       starting_event_id = (self.vowels_length + self.consonents_length) + 2
       
       if self.buttons_added == False:
-         self.vowel_dicretics_button_list = self.gen_button_array(self,self.VOWEL_DIACRITICS , self.vowel_dicretic_click , buttons_per_line, initial_button_x, initial_button_y, starting_event_id, button_width, button_height)    
+         self.vowel_dicretics_button_list = self.gen_button_array(self, self.VOWEL_DIACRITICS , self.vowel_dicretic_click , buttons_per_line, initial_button_x, initial_button_y, starting_event_id, button_width, button_height)    
       for sign in self.VOWEL_DIACRITICS:
          self.vowel_dicretics_list.append(sign)
          vd_button = self.vowel_dicretics_button_list[current_sign]
