@@ -1,0 +1,10 @@
+Package: hangman-si
+Version: 0.1-1
+Architecture: i386
+Maintainer: nayanajith laxaman <nmlaxaman@gmail.com>
+Installed-Size: 188
+Depends: ttf-sinhala-lklug, python-wxgtk2.6
+Section: base
+Priority: optional
+Homepage: http://nmlaxaman.blogspot.com
+Description: Sinhala word game to improve your word power.
