@@ -1,19 +1,12 @@
-# about.py: about box with general info
-# $Id: about.py,v 1.21 2005/05/06 21:48:26 agriggio Exp $
-#
-# Copyright (c) 2002-2005 Alberto Griggio <agriggio@users.sourceforge.net>
-# License: MIT (see license.txt)
-# THIS PROGRAM COMES WITH NO WARRANTY
-
 from wxPython.wx import *
 from wxPython.html import *
-import wxPython.lib.wxpTag
-#import common, misc, os.path, sys
+#import wxPython.lib.wxpTag
+
 import  os.path, sys
 path = "about"
 version="0.1"
 
-class wxGladeAboutBox(wxDialog):
+class HangmanAbout(wxDialog):
     text = '''
     <html>
     <body bgcolor="%s">
@@ -46,7 +39,7 @@ class wxGladeAboutBox(wxDialog):
     '''
 
     def __init__(self, parent=None):
-        wxDialog.__init__(self, parent, -1, 'About wxGlade')
+        wxDialog.__init__(self, parent, -1, 'About Hangman-si-ta')
         class HtmlWin(wxHtmlWindow):
             def OnLinkClicked(self, linkinfo):
                 href = linkinfo.GetHref()
@@ -56,7 +49,7 @@ class wxGladeAboutBox(wxDialog):
                         license = open(os.path.join(path,
                                                     'license.txt'))
                         dlg = wxScrolledMessageDialog(self, license.read(),
-                                                      "wxGlade - License")
+                                                      "Hangman-si-ta - License")
                         license.close()
                         dlg.ShowModal()
                         dlg.Destroy()
@@ -72,7 +65,7 @@ class wxGladeAboutBox(wxDialog):
                         credits = open(os.path.join(path,
                                                     'credits.txt'))
                         dlg = wxScrolledMessageDialog(self, credits.read(),
-                                                      "wxGlade - Credits")
+                                                      "Hgnmang-si-ta - Credits")
                         credits.close()
                         dlg.ShowModal()
                         dlg.Destroy()
@@ -83,15 +76,7 @@ class wxGladeAboutBox(wxDialog):
                     import webbrowser
                     webbrowser.open(linkinfo.GetHref(), new=True)
         html = HtmlWin(self, -1, size=(400, -1))
-        """
-        if misc.check_wx_version(2, 5, 3):
-            try:
-                html.SetStandardFonts()
-            except AttributeError:
-                pass
-        """
         py_version = sys.version.split()[0]
-        #bgcolor = misc.color_to_string(self.GetBackgroundColour())
         bgcolor = "whitesmoke"
         icon_path = os.path.join(path,
                                  'hangman.png')
@@ -118,14 +103,12 @@ class wxGladeAboutBox(wxDialog):
         if parent: self.CenterOnParent()
         else: self.CenterOnScreen()
 
-# end of class wxGladeAboutBox
+# end of class HangmanAbout
 
 
 if __name__ == '__main__':
     wxInitAllImageHandlers()
     app = wxPySimpleApp()
-    d = wxGladeAboutBox()
+    d = HangmanAbout()
     app.SetTopWindow(d)
     d.ShowModal()
-
-

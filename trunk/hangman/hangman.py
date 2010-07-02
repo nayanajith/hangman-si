@@ -13,13 +13,10 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 
-'''
-Created on Dec 21, 2009
-
-@author: nayanajith
-'''
-from 	   string import strip
-import   wx, re, random, sys, os
+from 	 string import strip
+import wx, re, random, sys, os
+import about, config
+import codecs
 
 
 class Hangman(wx.Frame):
@@ -333,9 +330,11 @@ class Hangman(wx.Frame):
       #Read list of words from a file
       first_word = True
       if read_file == True:
-         file = open(self.DATA_DIR + "/" + self.SCOPE)
+         print self.DATA_DIR + "/" + self.SCOPE ################
+         file = codecs.open(self.DATA_DIR + "/" + self.SCOPE,"r","utf-8")
          for line in file.readlines():
-            word = line.decode("UTF-8").rstrip('\n')
+            print line #############
+            word = line.rstrip('\n')
             if first_word == True:
                self.TITLE_SCOPE = word
                first_word = False
@@ -387,8 +386,9 @@ class Hangman(wx.Frame):
       
       self.scope_combo = wx.ComboBox(panel1, -1, size=(150, -1)) 
       for filename in os.listdir(self.DATA_DIR):
-         file = open(self.DATA_DIR + "/" + filename)
-         scope = file.readline().decode("UTF-8").rstrip('\n')
+         print filename
+         file = codecs.open(self.DATA_DIR + "/" + filename,"r","utf-8")
+         scope = file.readline().rstrip('\n')
          self.scope_dict[scope] = filename
          self.scope_combo.Append(scope)
       grid1.Add(self.scope_combo)
@@ -550,6 +550,11 @@ class Hangman(wx.Frame):
    On About event handler: display about information
    '''
    def onAbout(self, event):
+      dlg=about.HangmanAbout()
+      dlg.ShowModal()
+      dlg.Destroy()
+      
+      '''
       dlg = wx.MessageDialog(self,
          self.NAME + u"\n\n\n " + self.LANG_DICT["GAME"] + "\n ",
          self.LANG_DICT["INTRODUCTION"],
@@ -558,6 +563,7 @@ class Hangman(wx.Frame):
       dlg.SetFont(self.DEFAULT_FONT)
       dlg.ShowModal()
       dlg.Destroy()
+      '''
 
    def message(self, message):
       dlg = wx.MessageDialog(self, message, self.LANG_DICT["INFORMATION"], wx.OK | wx.ICON_INFORMATION)
