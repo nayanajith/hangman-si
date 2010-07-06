@@ -1,6 +1,6 @@
 #summary One-sentence summary of this page.
 
-= Sinhala = 
+= හැඳින්වීම = 
 
 වාග් මාලාව වැඩි දියුණු කිරීමේ ජනප්‍රිය ක්‍රීඩාවක් වන "Hangman" ක්‍රීඩාවේ යෙදෙන්න. ආරම්භ කිරීම සඳහා දකුණින් ඇති වචන ගණයන් ගෙන් 
 
@@ -27,23 +27,9 @@
 
 ස්ථානයේ දිස් වනු ඇත. 
 
+= උපදෙස් =
 
-= Introduction =
-
-
-
-= Details =
-
-We have implemented *two* versions of hangman for Sinhala and Tamil languages. Games are written in python and compiled with py2exe to make it easy for Windows users. It is also tested in WindowsXP and Windows7. 
-
-== User manual ==
-Most of the menu items and configuration interfaces are self explanatory. Further if you want to add new lists to the database create a UTF-8 text file including the word list. Remember that the first top most line of the list is considered as the category name of the file.
-
-
-*Keep in touch for new features, fixes...*
-
-
-
+== ඔබේම වචන ලැයිස්තුවක් දත්ත ගබඩාවට ඇතුළත් කරන ආකාරය ==
 
 
 == Hangman Sinhala ==
