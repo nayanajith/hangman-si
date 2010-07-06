@@ -2,12 +2,23 @@
 
 = Introduction =
 
-Hangman is a popular word game wich was long being for English. 
+Hangman is a popular word game which was long being for English. Here we introduce a you a localized version of hangman.
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+We have implemented *two* versions of hangman for Sinhala and Tamil languages. Games are written in python and compiled with py2exe to make it easy for Windows users. It is also tested in WindowsXP and Windows7. 
+
+== User manual ==
+Most of the menu items and configuration interfaces are self explanatory. Further if you want to add new lists to the database create a UTF-8 text file including the word list. Remember that the first top most line of the list is considered as the category name of the file.
+
+
+*Keep in touch for new features, fixes and *
+
+== Hangman Sinhala ==
+
+http://lh4.ggpht.com/_5e88KWjsOls/TDKmwV4Ul6I/AAAAAAAAAVQ/0OWykPCi-K0/d/hangman-si.png
+
+== Hangman Tamil ==
+
+http://lh5.ggpht.com/_5e88KWjsOls/TDKmwjtk1kI/AAAAAAAAAVU/H220FtDuHwE/d/hangman-ta.png
