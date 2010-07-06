@@ -13,7 +13,7 @@ We have implemented *two* versions of hangman for Sinhala and Tamil languages. G
 Most of the menu items and configuration interfaces are self explanatory. Further if you want to add new lists to the database create a UTF-8 text file including the word list. Remember that the first top most line of the list is considered as the category name of the file.
 
 
-*Keep in touch for new features, fixes and *
+*Keep in touch for new features, fixes...*
 
 == Hangman Sinhala ==
 
